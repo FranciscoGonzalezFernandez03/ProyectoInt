@@ -1,0 +1,38 @@
+<?php 
+
+class Conenection{
+    protected $conn;
+    private $configFile= "config.json";
+
+    public function __construct() 
+    {
+        $this->makeConnection();
+    }
+
+    private function makeConnection()
+    {
+        try {
+            if(!file_exists($this->configFile)) {
+                throw new Exception("Archivo de configuración no encontrado");
+            }
+
+            $configData = file_get_contents($this->configFile);
+            $c = json_decode($configData, true);
+            $dsn = "mysql:host=" . $c['host'] . ";dbname=" . $c['db'];
+            $this->conn = new PDO($dsn, $c['userName'], $c['password']);
+        }
+        catch (PDOException $e) {
+            echo "<b>Mensaje:</b> " . $e->getMessage() . "<br>";
+            echo "<b>Código de error MySQL;</b> " . $e->getCode() . "<br>";
+        }
+    }
+
+    public function getConn(){
+        return $this->conn;
+    }
+
+    public function __destruct() {
+        $this->conn = null;
+    }
+}
+// FIN DE LA CONEXIÓN A LA BASE DE DATOS
