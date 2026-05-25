@@ -12,7 +12,7 @@
         <?php else: ?>
             <a href="index.php?accion=login">Iniciar Sesión</a> |
             <a href="index.php?accion=alta">Registrarse</a>  |
-        <?php endif; ?>flor
+        <?php endif; ?>
         
 
 
