@@ -1,8 +1,8 @@
 <?php 
 
-class Conenection{
+class Connection{
     protected $conn;
-    private $configFile= "config.json";
+    private $configFile= "conf.json";
 
     public function __construct() 
     {

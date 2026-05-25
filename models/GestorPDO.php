@@ -1,6 +1,6 @@
 <?php
 
-class GestorPDO extends Conenection {
+class GestorPDO extends Connection {
     public function __construct() {
         parent::__construct();
     }
