@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
     <h1>Iniciar Sesión</h1>
