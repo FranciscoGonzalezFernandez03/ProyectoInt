@@ -2,8 +2,9 @@
 class informatico extends Problemas {
     private $equipoAfectado;
 
-    public function __construct($id=0, $tipo, $titulo, $descripcion, $prioridad, $fecha) {
+    public function __construct($tipo, $titulo, $descripcion, $prioridad, $fecha, $equipoAfectado , $id=0) {
         parent::__construct($id, $tipo, $titulo, $descripcion, $prioridad, $fecha);
+        $this->equipoAfectado = $equipoAfectado;
     }
 
 
@@ -18,7 +19,7 @@ class informatico extends Problemas {
     /**
      * Set the value of equipoAfectado
      */
-    public function setEquipoAfectado($equipoAfectado): self
+    public function setEquipoAfectado($equipoAfectado)
     {
         $this->equipoAfectado = $equipoAfectado;
 

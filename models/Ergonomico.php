@@ -1,9 +1,10 @@
 <?php
-class ergonomicos extends Problemas {
+class ergonomico extends Problemas {
     private $zonaCuerpo;
 
-    public function __construct($id=0, $tipo, $titulo, $descripcion, $prioridad, $fecha) {
+    public function __construct($tipo, $titulo, $descripcion, $prioridad, $fecha, $zonaCuerpo , $id=0) {
         parent::__construct($id, $tipo, $titulo, $descripcion, $prioridad, $fecha);
+        $this->zonaCuerpo = $zonaCuerpo;
     }
 
 
@@ -18,7 +19,7 @@ class ergonomicos extends Problemas {
     /**
      * Set the value of zonaCuerpo
      */
-    public function setZonaCuerpo($zonaCuerpo): self
+    public function setZonaCuerpo($zonaCuerpo)
     {
         $this->zonaCuerpo = $zonaCuerpo;
 

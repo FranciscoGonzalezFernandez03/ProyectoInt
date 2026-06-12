@@ -10,12 +10,12 @@ class GestorPDO extends Connection {
         $rtdo=$this->conn->query($consulta);
         $arrayProblemas=[];
         while ($value= $rtdo->fetch(PDO::FETCH_ASSOC)) {
-            if ($value['tipoProblema']=="informatico"){
+            if ($value['tipo']=="informatico"){
                 // Se añade $value['equipoAfectado'] al final
                 $problema = new informatico($value['id'], $value['tipo'], $value['titulo'], $value['descripcion'], $value['prioridad'], $value['fecha'], $value['equipoAfectado']);
             } else {
                 // Se añade $value['zonaCuerpo'] al final
-                $problema = new ergonomicos($value['id'], $value['tipo'], $value['titulo'], $value['descripcion'], $value['prioridad'], $value['fecha'], $value['zonaCuerpo']);
+                $problema = new ergonomico($value['id'], $value['tipo'], $value['titulo'], $value['descripcion'], $value['prioridad'], $value['fecha'], $value['zonaCuerpo']);
             }
 
             $arrayProblemas[]=$problema;
@@ -29,21 +29,21 @@ class GestorPDO extends Connection {
             // Se añade equipoAfectado a la consulta INSERT
             $consulta = "INSERT INTO flotaProblemas (tipo, titulo, descripcion, prioridad, fecha, equipoAfectado) VALUES (:tipo, :titulo, :descripcion, :prioridad, :fecha, :equipoAfectado)";
             $stmt = $this->conn->prepare($consulta);
-            $stmt->bindParam(':tipo', $problema->getTipo());
-            $stmt->bindParam(':titulo', $problema->getTitulo());
-            $stmt->bindParam(':descripcion', $problema->getDescripcion());
-            $stmt->bindParam(':prioridad', $problema->getPrioridad());
-            $stmt->bindParam(':fecha', $problema->getFecha());
+            $stmt->bindValue('tipo', "informatico");
+            $stmt->bindValue(':titulo', $problema->getTitulo());
+            $stmt->bindValue(':descripcion', $problema->getDescripcion());
+            $stmt->bindValue(':prioridad', $problema->getPrioridad());
+            $stmt->bindValue(':fecha', $problema->getFecha());
             $stmt->bindValue(':equipoAfectado', $problema->getEquipoAfectado()); // Nuevo bind
         } else {
             // Se añade zonaCuerpo a la consulta INSERT
             $sql = "INSERT INTO flotaProblemas (tipo, titulo, descripcion, prioridad, fecha, zonaCuerpo) VALUES (:tipo, :titulo, :descripcion, :prioridad, :fecha, :zonaCuerpo)";
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindValue(':tipo', $problema->getTipo());
-            $stmt->bindParam(':titulo', $problema->getTitulo());
-            $stmt->bindParam(':descripcion', $problema->getDescripcion());
-            $stmt->bindParam(':prioridad', $problema->getPrioridad());
-            $stmt->bindParam(':fecha', $problema->getFecha());
+            $stmt->bindValue('tipo', "ergonomico");
+            $stmt->bindValue(':titulo', $problema->getTitulo());
+            $stmt->bindValue(':descripcion', $problema->getDescripcion());
+            $stmt->bindValue(':prioridad', $problema->getPrioridad());
+            $stmt->bindValue(':fecha', $problema->getFecha());
             $stmt->bindValue(':zonaCuerpo', $problema->getZonaCuerpo()); // Nuevo bind
         }
         return $stmt->execute();
@@ -64,7 +64,7 @@ class GestorPDO extends Connection {
                 $problema = new informatico ($value['id'], $value['tipo'], $value['titulo'], $value['descripcion'], $value['prioridad'], $value['fecha'], $value['equipoAfectado']);
             }else{
                 // Se añade $value['zonaCuerpo'] al final
-                $problema = new ergonomicos ($value['id'], $value['tipo'], $value['titulo'], $value['descripcion'], $value['prioridad'], $value['fecha'], $value['zonaCuerpo']);
+                $problema = new ergonomico ($value['id'], $value['tipo'], $value['titulo'], $value['descripcion'], $value['prioridad'], $value['fecha'], $value['zonaCuerpo']);
             }
         return $problema;
         }
@@ -74,10 +74,10 @@ class GestorPDO extends Connection {
         try {
             if ($problema instanceof informatico){
                 // Se añade equipoAfectado al UPDATE
-                $sql="UPDATE flotaProblemas SET tipo=:tipo, titulo=:titulo, descripcion=:descripcion, prioridad=:prioridad, fecha=:fecha, equipoAfectado=:equipoAfectado WHERE id = :id";
+                $sql="UPDATE flotaProblemas SET tipoProblema='informatico', tipo=:tipo, titulo=:titulo, descripcion=:descripcion, prioridad=:prioridad, fecha=:fecha, equipoAfectado=:equipoAfectado WHERE id = :id";
                 $stmt = $this->conn->prepare($sql);
                 $stmt->bindValue(':id', $problema->getId());
-                $stmt->bindValue(':tipo', $problema->getTipo());
+                $stmt->bindValue(':tipo', "informatico");
                 $stmt->bindValue(':titulo', $problema->getTitulo());
                 $stmt->bindValue(':descripcion', $problema->getDescripcion());
                 $stmt->bindValue(':prioridad', $problema->getPrioridad());
@@ -85,10 +85,10 @@ class GestorPDO extends Connection {
                 $stmt->bindValue(':equipoAfectado', $problema->getEquipoAfectado()); // Nuevo bind
             }else{
                 // Se añade zonaCuerpo al UPDATE
-                $sql="UPDATE flotaProblemas SET tipo=:tipo, titulo=:titulo, descripcion=:descripcion, prioridad=:prioridad, fecha=:fecha, zonaCuerpo=:zonaCuerpo WHERE id = :id";
+                $sql="UPDATE flotaProblemas SET tipoProblema='ergonomico', tipo=:tipo, titulo=:titulo, descripcion=:descripcion, prioridad=:prioridad, fecha=:fecha, zonaCuerpo=:zonaCuerpo WHERE id = :id";
                 $stmt = $this->conn->prepare($sql);
                 $stmt->bindValue(':id', $problema->getId());
-                $stmt->bindValue(':tipo', $problema->getTipo());
+                $stmt->bindValue(':tipo', "ergonomico");
                 $stmt->bindValue(':titulo', $problema->getTitulo());
                 $stmt->bindValue(':descripcion', $problema->getDescripcion());
                 $stmt->bindValue(':prioridad', $problema->getPrioridad());
