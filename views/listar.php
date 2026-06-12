@@ -29,7 +29,7 @@
                 <td><?= $p->getPrioridad() ?></td>
                 <td><?= $p->getFecha() ?></td>
                 <td><?= ($p instanceof informatico) ? $p->getEquipoAfectado() : "--" ?></td>
-                <td><?= ($p instanceof ergonomicos) ? $p->getZonaCuerpo() : "--" ?></td>
+                <td><?= ($p instanceof ergonomico) ? $p->getZonaCuerpo() : "--" ?></td>
                 <td>
                     <?php if (isset($_SESSION['usuario_id'])): ?>
                         <a href="index.php?accion=editar&id=<?= $p->getId() ?>" class="btn-editar">Editar</a>
