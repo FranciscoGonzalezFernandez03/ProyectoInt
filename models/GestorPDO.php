@@ -24,13 +24,51 @@ class GestorPDO extends Connection {
 }
 
 
+public function agregar($problema) {
+    if ($problema instanceof informatico) {
+        $sql = "INSERT INTO flotaProblemas (tipo, titulo, descripcion, prioridad, fecha, equipoAfectado) VALUES (:tipo, :titulo, :descripcion, :prioridad, :fecha, :equipoAfectado)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(':tipo', "informatico");
+        $stmt->bindValue(':titulo', $problema->getTitulo());
+        $stmt->bindValue(':descripcion', $problema->getDescripcion());
+        $stmt->bindValue(':prioridad', $problema->getPrioridad());
+        $stmt->bindValue(':fecha', $problema->getFecha());
+        $stmt->bindValue(':equipoAfectado', $problema->getEquipoAfectado());
+    } else {
+        $sql = "INSERT INTO flotaProblemas (tipo, titulo, descripcion, prioridad, fecha, zonaCuerpo) VALUES (:tipo, :titulo, :descripcion, :prioridad, :fecha, :zonaCuerpo)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindValue(':tipo', "ergonomico");
+        $stmt->bindValue(':titulo', $problema->getTitulo());
+        $stmt->bindValue(':descripcion', $problema->getDescripcion());
+        $stmt->bindValue(':prioridad', $problema->getPrioridad());
+        $stmt->bindValue(':fecha', $problema->getFecha());
+        $stmt->bindValue(':zonaCuerpo', $problema->getZonaCuerpo());
+    }
+
+    $resultado = $stmt->execute();
+    var_dump($resultado);            // ¿true o false?
+    var_dump($stmt->errorInfo());    // el error de SQL, si lo hay
+    exit;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*
     public function agregar($problema) {
         try {
             if ($problema instanceof informatico) {
             // Se añade equipoAfectado a la consulta INSERT
             $consulta = "INSERT INTO flotaProblemas (tipo, titulo, descripcion, prioridad, fecha, equipoAfectado) VALUES (:tipo, :titulo, :descripcion, :prioridad, :fecha, :equipoAfectado)";
             $stmt = $this->conn->prepare($consulta);
-            $stmt->bindValue('tipo', "informatico");
+            $stmt->bindValue(':tipo', "informatico");
             $stmt->bindValue(':titulo', $problema->getTitulo());
             $stmt->bindValue(':descripcion', $problema->getDescripcion());
             $stmt->bindValue(':prioridad', $problema->getPrioridad());
@@ -40,7 +78,7 @@ class GestorPDO extends Connection {
             // Se añade zonaCuerpo a la consulta INSERT
             $sql = "INSERT INTO flotaProblemas (tipo, titulo, descripcion, prioridad, fecha, zonaCuerpo) VALUES (:tipo, :titulo, :descripcion, :prioridad, :fecha, :zonaCuerpo)";
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindValue('tipo', "ergonomico");
+            $stmt->bindValue(':tipo', "ergonomico");
             $stmt->bindValue(':titulo', $problema->getTitulo());
             $stmt->bindValue(':descripcion', $problema->getDescripcion());
             $stmt->bindValue(':prioridad', $problema->getPrioridad());
@@ -53,7 +91,8 @@ class GestorPDO extends Connection {
             // Manejo de errores, por ejemplo, loguear el error
             return false;
         } 
-    }
+    } */
+
 
     public function buscar($id) {
         $sql="SELECT * FROM flotaProblemas WHERE id=$id";
