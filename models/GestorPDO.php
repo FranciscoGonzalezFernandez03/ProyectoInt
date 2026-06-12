@@ -5,23 +5,24 @@ class GestorPDO extends Connection {
         parent::__construct();
     }
 
-    public function listar() {
-        $consulta="SELECT * FROM flotaProblemas";
-        $rtdo=$this->conn->query($consulta);
-        $arrayProblemas=[];
-        while ($value= $rtdo->fetch(PDO::FETCH_ASSOC)) {
-            if ($value['tipo']=="informatico"){
-                // Se añade $value['equipoAfectado'] al final
-                $problema = new informatico($value['id'], $value['tipo'], $value['titulo'], $value['descripcion'], $value['prioridad'], $value['fecha'], $value['equipoAfectado']);
-            } else {
-                // Se añade $value['zonaCuerpo'] al final
-                $problema = new ergonomico($value['id'], $value['tipo'], $value['titulo'], $value['descripcion'], $value['prioridad'], $value['fecha'], $value['zonaCuerpo']);
-            }
 
-            $arrayProblemas[]=$problema;
+    public function listar() {
+    $consulta = "SELECT * FROM flotaProblemas";
+    $rtdo = $this->conn->query($consulta);
+    $arrayProblemas = [];
+    while ($value = $rtdo->fetch(PDO::FETCH_ASSOC)) {
+        if ($value['tipo'] == "informatico") {
+            // Se añade $value['equipoAfectado'] al final
+            $problema = new informatico($value['tipo'], $value['titulo'], $value['descripcion'], $value['prioridad'], $value['fecha'], $value['equipoAfectado'], $value['id']);
+        } else {
+        // Se añade $value['zonaCuerpo'] al final
+            $problema = new ergonomico($value['tipo'], $value['titulo'], $value['descripcion'], $value['prioridad'], $value['fecha'], $value['zonaCuerpo'], $value['id']);
         }
-        return $arrayProblemas;
+        $arrayProblemas[] = $problema;
     }
+    return $arrayProblemas;
+}
+
 
     public function agregar($problema) {
         try {
@@ -59,12 +60,12 @@ class GestorPDO extends Connection {
         $stmt=$this->conn->query($sql);
  
         while ($value = $stmt->fetch(PDO::FETCH_ASSOC)){
-            if ($value['tipoProblema']=="informatico"){
+            if ($value['tipo']=="informatico"){
                 // Se añade $value['equipoAfectado'] al final
-                $problema = new informatico ($value['id'], $value['tipo'], $value['titulo'], $value['descripcion'], $value['prioridad'], $value['fecha'], $value['equipoAfectado']);
+                $problema = new informatico ($value['tipo'], $value['titulo'], $value['descripcion'], $value['prioridad'], $value['fecha'], $value['equipoAfectado'], $value['id']);
             }else{
                 // Se añade $value['zonaCuerpo'] al final
-                $problema = new ergonomico ($value['id'], $value['tipo'], $value['titulo'], $value['descripcion'], $value['prioridad'], $value['fecha'], $value['zonaCuerpo']);
+                $problema = new ergonomico ($value['tipo'], $value['titulo'], $value['descripcion'], $value['prioridad'], $value['fecha'], $value['zonaCuerpo'], $value['id']);
             }
         return $problema;
         }
@@ -74,7 +75,7 @@ class GestorPDO extends Connection {
         try {
             if ($problema instanceof informatico){
                 // Se añade equipoAfectado al UPDATE
-                $sql="UPDATE flotaProblemas SET tipoProblema='informatico', tipo=:tipo, titulo=:titulo, descripcion=:descripcion, prioridad=:prioridad, fecha=:fecha, equipoAfectado=:equipoAfectado WHERE id = :id";
+                $sql="UPDATE flotaProblemas SET tipo='informatico', titulo=:titulo, descripcion=:descripcion, prioridad=:prioridad, fecha=:fecha, equipoAfectado=:equipoAfectado WHERE id = :id";
                 $stmt = $this->conn->prepare($sql);
                 $stmt->bindValue(':id', $problema->getId());
                 $stmt->bindValue(':tipo', "informatico");
@@ -85,7 +86,7 @@ class GestorPDO extends Connection {
                 $stmt->bindValue(':equipoAfectado', $problema->getEquipoAfectado()); // Nuevo bind
             }else{
                 // Se añade zonaCuerpo al UPDATE
-                $sql="UPDATE flotaProblemas SET tipoProblema='ergonomico', tipo=:tipo, titulo=:titulo, descripcion=:descripcion, prioridad=:prioridad, fecha=:fecha, zonaCuerpo=:zonaCuerpo WHERE id = :id";
+                $sql="UPDATE flotaProblemas SET tipo='ergonomico', titulo=:titulo, descripcion=:descripcion, prioridad=:prioridad, fecha=:fecha, zonaCuerpo=:zonaCuerpo WHERE id = :id";
                 $stmt = $this->conn->prepare($sql);
                 $stmt->bindValue(':id', $problema->getId());
                 $stmt->bindValue(':tipo', "ergonomico");
