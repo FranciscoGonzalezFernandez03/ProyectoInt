@@ -26,8 +26,9 @@ class ProblemaController {
                 $problema = new informatico($tipo, $titulo, $descripcion, $prioridad, $fecha, $equipoAfectado);
             } else {
                 $zonaCuerpo = $_POST['zonaCuerpo'];
-                $problema = new ergonomicos($tipo, $titulo, $descripcion, $prioridad, $fecha, $zonaCuerpo);
+                $problema = new ergonomico($tipo, $titulo, $descripcion, $prioridad, $fecha, $zonaCuerpo);
             }
+            
             $this->gestor->agregar($problema);
 
             header("Location: index.php");

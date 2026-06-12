@@ -32,7 +32,7 @@
         </p>
         <?php endif; ?>
  
-        <?php if ($problema instanceof ergonomicos): ?>
+        <?php if ($problema instanceof ergonomico): ?>
         <p>
             <label for="zonaCuerpo">Zona del cuerpo</label>
             <input type="text" id="zonaCuerpo" name="zonaCuerpo" value="<?= $problema->getZonaCuerpo() ?>" required>

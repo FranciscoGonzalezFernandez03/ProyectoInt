@@ -78,7 +78,6 @@ class GestorPDO extends Connection {
                 $sql="UPDATE flotaProblemas SET tipo='informatico', titulo=:titulo, descripcion=:descripcion, prioridad=:prioridad, fecha=:fecha, equipoAfectado=:equipoAfectado WHERE id = :id";
                 $stmt = $this->conn->prepare($sql);
                 $stmt->bindValue(':id', $problema->getId());
-                $stmt->bindValue(':tipo', "informatico");
                 $stmt->bindValue(':titulo', $problema->getTitulo());
                 $stmt->bindValue(':descripcion', $problema->getDescripcion());
                 $stmt->bindValue(':prioridad', $problema->getPrioridad());
@@ -89,7 +88,6 @@ class GestorPDO extends Connection {
                 $sql="UPDATE flotaProblemas SET tipo='ergonomico', titulo=:titulo, descripcion=:descripcion, prioridad=:prioridad, fecha=:fecha, zonaCuerpo=:zonaCuerpo WHERE id = :id";
                 $stmt = $this->conn->prepare($sql);
                 $stmt->bindValue(':id', $problema->getId());
-                $stmt->bindValue(':tipo', "ergonomico");
                 $stmt->bindValue(':titulo', $problema->getTitulo());
                 $stmt->bindValue(':descripcion', $problema->getDescripcion());
                 $stmt->bindValue(':prioridad', $problema->getPrioridad());
