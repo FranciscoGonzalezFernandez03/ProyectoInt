@@ -1,25 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Registro de Usuario</title>
-</head>
-<body>
-    <h1>Crear nueva cuenta</h1>
-
+<?php $titulo = 'Crear cuenta'; include 'views/header.php'; ?>
+ 
+<section class="formulario">
+    <h2>Crear nueva cuenta</h2>
+ 
     <form method="POST">
-        Email:<br>
-        <input type="email" name="email" required><br><br>
-
-
-        Contraseña:<br>
-        <input type="password" name="password" required minlength="4"><br><br>
-
-
+        <p>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </p>
+        <p>
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password" required minlength="4">
+        </p>
         <button type="submit">Registrarse</button>
     </form>
-
-    <br>
+ 
     <p>¿Ya tienes una cuenta? <a href="index.php?accion=login">Inicia sesión aquí</a></p>
-    <a href="index.php">Volver al inicio</a>
-</body>
-</html>
+</section>
+ 
+<?php include 'views/footer.php'; ?>

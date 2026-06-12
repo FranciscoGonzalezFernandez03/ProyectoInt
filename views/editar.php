@@ -1,38 +1,46 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Editar Problema</title>
-</head>
-<body>
-    <h1>Editar Problema</h1>
-
+<?php $titulo = 'Editar problema'; include 'views/header.php'; ?>
+ 
+<section class="formulario">
+    <h2>Editar problema</h2>
+ 
     <form method="POST">
-        Título:<br>
-        <input type="text" name="titulo" value="<?= $problema->getTitulo() ?>" required><br><br>
-
-        Descripción:<br>
-        <input type="text" name="descripcion" value="<?= $problema->getDescripcion() ?>" required><br><br>
-
-        Prioridad:<br>
-        <input type="text" name="prioridad" value="<?= $problema->getPrioridad() ?>" required><br><br>
-
-        Fecha:<br>
-        <input type="date" name="fecha" value="<?= $problema->getFecha() ?>" required><br><br>
-
+        <p>
+            <label for="titulo">Título</label>
+            <input type="text" id="titulo" name="titulo" value="<?= $problema->getTitulo() ?>" required>
+        </p>
+        <p>
+            <label for="descripcion">Descripción</label>
+            <input type="text" id="descripcion" name="descripcion" value="<?= $problema->getDescripcion() ?>" required>
+        </p>
+        <p>
+            <label for="prioridad">Prioridad</label>
+            <select id="prioridad" name="prioridad" required>
+                <option value="Alta"  <?= $problema->getPrioridad() == 'Alta'  ? 'selected' : '' ?>>Alta</option>
+                <option value="Media" <?= $problema->getPrioridad() == 'Media' ? 'selected' : '' ?>>Media</option>
+                <option value="Baja"  <?= $problema->getPrioridad() == 'Baja'  ? 'selected' : '' ?>>Baja</option>
+            </select>
+        </p>
+        <p>
+            <label for="fecha">Fecha</label>
+            <input type="date" id="fecha" name="fecha" value="<?= $problema->getFecha() ?>" required>
+        </p>
+ 
         <?php if ($problema instanceof informatico): ?>
-            Equipo Afectado:<br>
-            <input type="text" name="equipoAfectado" value="<?= $problema->getEquipoAfectado() ?>" required><br><br>
+        <p>
+            <label for="equipoAfectado">Equipo afectado</label>
+            <input type="text" id="equipoAfectado" name="equipoAfectado" value="<?= $problema->getEquipoAfectado() ?>" required>
+        </p>
         <?php endif; ?>
-
+ 
         <?php if ($problema instanceof ergonomicos): ?>
-            Zona del Cuerpo:<br>
-            <input type="text" name="zonaCuerpo" value="<?= $problema->getZonaCuerpo() ?>" required><br><br>
+        <p>
+            <label for="zonaCuerpo">Zona del cuerpo</label>
+            <input type="text" id="zonaCuerpo" name="zonaCuerpo" value="<?= $problema->getZonaCuerpo() ?>" required>
+        </p>
         <?php endif; ?>
-
-        <button type="submit">Actualizar Problema</button>
+ 
+        <button type="submit">Actualizar problema</button>
     </form>
-
-    <br>
-    <a href="index.php">Volver al listado</a>
-</body>
-</html>
+</section>
+ 
+<?php include 'views/footer.php'; ?>

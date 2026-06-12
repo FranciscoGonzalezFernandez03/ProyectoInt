@@ -1,29 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Iniciar Sesión</title>
-<link rel="stylesheet" href="css/login.css">
-</head>
-<body>
-    <h1>Iniciar Sesión</h1>
-
+<?php $titulo = 'Iniciar sesión'; include 'views/header.php'; ?>
+ 
+<section class="formulario">
+    <h2>Iniciar sesión</h2>
+ 
     <?php if (isset($error)): ?>
-        <p style="color: red;"><b>Error:</b> <?=  $error ?></p>
+        <p class="error"><b>Error:</b> <?= $error ?></p>
     <?php endif; ?>
-
-        <form method="POST">
-            Email:<br>
-            <input type="email" name="email" required><br><br>
-
-
-            Contraseña:<br>
-            <input type="password" name="password" required><br><br>
-            <input type="checkbox" name="recordarme"> Recordarme en este equipo<br><br>
-            <button type="submit">Entrar</button>
-        </form>
-
-        <br>
-        <p>¿No tienes cuenta? <a href="index.php?accion=registro">Regístrete aquí</a></p>
-        <a href="index.php">Volver al inicio</a>
-</body>
-</html>
+ 
+    <form method="POST">
+        <p>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </p>
+        <p>
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password" required>
+        </p>
+        <p>
+            <label><input type="checkbox" name="recordarme"> Recordarme en este equipo</label>
+        </p>
+        <button type="submit">Entrar</button>
+    </form>
+ 
+    <p>¿No tienes cuenta? <a href="index.php?accion=alta">Regístrate aquí</a></p>
+</section>
+ 
+<?php include 'views/footer.php'; ?>
