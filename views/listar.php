@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($problemas as $p): ?>
+            <?php foreach ($problema as $p): ?>
             <tr>
                 <td><?= $p->getId() ?></td>
                 <td><?= ($p instanceof informatico) ? "Informático" : "Ergonómico" ?></td>

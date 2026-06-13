@@ -15,7 +15,7 @@
         <nav class="site-nav">
             <ul>
                 <li><a href="index.php">Inicio</a></li>
-                <li><a href="index.php?accion=crear">Agregar problema</a></li>
+
  
                 <?php if (isset($_SESSION['usuario_id'])): ?>
                     <li>Hola, <strong><?= $_SESSION['usuarioEmail'] ?></strong></li>

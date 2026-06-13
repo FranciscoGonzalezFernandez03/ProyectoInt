@@ -9,7 +9,7 @@ class ProblemaController {
     }
 
     public function index() {
-        $problemas = $this->gestor->listar();
+        $problema = $this->gestor->listar();
         include "views/listar.php";
     }
 
