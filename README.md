@@ -65,5 +65,4 @@ GestionLaboral/
 └── README.md
 ```
 
-
 Proyecto desarrollado de forma individual como parte del Proyecto Intermodular de DAW.
