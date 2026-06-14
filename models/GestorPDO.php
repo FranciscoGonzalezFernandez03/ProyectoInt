@@ -97,9 +97,9 @@ class GestorPDO extends Connection {
             } 
         // Ejecutamos
             return $stmt->execute(); 
-            
+        
         } catch (PDOException $e) {
-            die("Error de la base de datos al actualizar: " . $e->getMessage());
+            return false;
         }
     }
 

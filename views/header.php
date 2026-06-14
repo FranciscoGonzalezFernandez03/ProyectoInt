@@ -16,7 +16,7 @@
         <nav class="site-nav">
             <ul>
                 <li><a href="index.php">Inicio</a></li>
-                <li><a href="https://youtu.be/ID_DEL_VIDEO" target="_blank" rel="noopener">Ver demo</a></li>
+                <li><a href="https://youtu.be/ID_DEL_VIDEO" target="_blank" rel="noopener">Ver DEMO</a></li>
                 <?php if (isset($_SESSION['usuario_id'])): ?>
                     <li>Hola, <strong><?= $_SESSION['usuarioEmail'] ?></strong></li>
                     <li><a href="index.php?accion=logout" class="nav-btn">Cerrar sesión</a></li>
