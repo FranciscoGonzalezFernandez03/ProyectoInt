@@ -1,12 +1,13 @@
 <?php $titulo = 'Crear problema'; include 'views/header.php'; ?>
- 
+
 <section class="formulario">
-    <h2>Crear problema</h2>
- 
+    <h1>Crear problema</h1>
+
     <form method="POST">
         <p>
             <label for="tipo">Tipo</label>
             <select id="tipo" name="tipo" required>
+                <option value="" disabled selected>Selecciona un tipo</option>
                 <option value="informatico">Informático</option>
                 <option value="ergonomico">Ergonómico</option>
             </select>
@@ -22,6 +23,7 @@
         <p>
             <label for="prioridad">Prioridad</label>
             <select id="prioridad" name="prioridad" required>
+                <option value="" disabled selected>Selecciona la prioridad</option>
                 <option value="Alta">Alta</option>
                 <option value="Media">Media</option>
                 <option value="Baja">Baja</option>
@@ -39,9 +41,9 @@
             <label for="zonaCuerpo">Zona del cuerpo (solo ergonómico)</label>
             <input type="text" id="zonaCuerpo" name="zonaCuerpo">
         </p>
- 
+
         <button type="submit">Guardar</button>
     </form>
 </section>
- 
+
 <?php include 'views/footer.php'; ?>

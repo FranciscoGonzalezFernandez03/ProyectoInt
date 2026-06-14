@@ -1,7 +1,7 @@
 <?php $titulo = 'Iniciar sesión'; include 'views/header.php'; ?>
  
 <section class="formulario">
-    <h2>Iniciar sesión</h2>
+    <h1>Iniciar sesión</h1>
  
     <?php if (isset($error)): ?>
         <p class="error"><b>Error:</b> <?= $error ?></p>

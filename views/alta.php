@@ -1,7 +1,7 @@
 <?php $titulo = 'Crear cuenta'; include 'views/header.php'; ?>
- 
+
 <section class="formulario">
-    <h2>Crear nueva cuenta</h2>
+    <h1>Crear nueva cuenta</h1>
  
     <form method="POST">
         <p>

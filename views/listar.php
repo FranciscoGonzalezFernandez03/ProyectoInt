@@ -1,6 +1,6 @@
 <?php $titulo = 'Listado de problemas'; include 'views/header.php'; ?>
  
-<h2>Registro de problemas</h2>
+<h1>Registro de problemas</h1>
  
 <a href="index.php?accion=crear" class="btn">Agregar problema</a>
  
