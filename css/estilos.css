@@ -217,3 +217,11 @@ body {
 }
  
 .btn:hover { background-color: #0f2540; }
+
+
+.logo {
+  height: 48px;
+  width: auto;
+  vertical-align: middle;
+  margin-right: 12px;
+}

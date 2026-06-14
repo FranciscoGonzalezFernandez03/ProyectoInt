@@ -9,20 +9,17 @@
 <body>
  
 <header class="site-header">
+    <img src="img/logo1.png" alt="Logo de GestiónLaboral" class="logo">
     <div class="header-inner">
         <a href="index.php" class="site-logo">⚙ GestiónLaboral</a>
  
         <nav class="site-nav">
             <ul>
                 <li><a href="index.php">Inicio</a></li>
-
- 
+                <li><a href="https://youtu.be/ID_DEL_VIDEO" target="_blank" rel="noopener">Ver demo</a></li>
                 <?php if (isset($_SESSION['usuario_id'])): ?>
                     <li>Hola, <strong><?= $_SESSION['usuarioEmail'] ?></strong></li>
                     <li><a href="index.php?accion=logout" class="nav-btn">Cerrar sesión</a></li>
-                <?php else: ?>
-                    <li><a href="index.php?accion=login" class="nav-btn">Iniciar sesión</a></li>
-                    <li><a href="index.php?accion=alta" class="nav-btn nav-btn--registro">Registrarse</a></li>
                 <?php endif; ?>
             </ul>
         </nav>
